@@ -1,0 +1,23 @@
+<div class="col-md-12">
+  <div class="col-md-6">
+    <div *ngIf="stanza">
+      <stanza-markdown [stanza]="stanza.lines"></stanza-markdown>
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="stanzaForm.get('lines').controls">
+    <form [formGroup]="stanzaForm">
+      <div formArrayName="lines" [dragula]="bagStanza" [dragulaModel]="stanzaForm.get('lines').controls">
+        <div class="form-group" style="width: 20rem; height: 5rem;" *ngFor="let line of stanzaForm.get('lines').controls; let i = index">
+          <span class="handle">+</span>
+          <input type="text" class="form-control" [formControlName]="i">
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" style="float: left;" (click)="addLineToForm()">Add Line To Stanza</button>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" style="float: left;" (click)="processBodyFromForm()">Process Stanza Lines From Form</button>
+        </div>
+      </div>    
+    </form>
+  </div>
+</div>

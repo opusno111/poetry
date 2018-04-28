@@ -1,0 +1,41 @@
+<div class="col-md-12">
+  <div class="col-md-6">
+    <div class="row" *ngIf="poem">
+      <poem-markdown [textData]="poem.body"></poem-markdown>      
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="poemForm">
+    <form [formGroup]="poemForm">
+      <div formArrayName="stanzas" [dragula]='"bag-one"' [dragulaModel]="poemForm.get('stanzas').value">
+        <div class="form-group" style="width: 20rem; height: 15rem;" *ngFor="let stanza of poemForm.get('stanzas').value; let i = index">
+          <span class="handle">+</span>
+          <div class="card">
+            <div class="card-text" >
+              <p>{{ stanza.lines }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" style="float: left;" (click)="addStanzaToForm()">Add Line To Poem</button>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" style="float: left;" (click)="processBodyFromDragula()">Process Poem Body From Form</button>
+        </div>
+      </div>    
+    </form>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="row">
+    <button class="btn btn-primary" style="float: left;" (click)="addNewStanza()">Add New Stanza</button>
+  </div>
+  <div *ngIf="poem">
+    <div *ngFor="let stanza of poem.stanzas">
+      <stanza-edit [stanza]="stanza"></stanza-edit>
+
+    </div>
+  </div>
+</div>
+
+

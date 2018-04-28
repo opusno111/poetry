@@ -1,0 +1,4 @@
+
+<textarea style="width: 500px; height: 300px;" [(ngModel)]="stanza"></textarea>
+<markdown [data]="stanza"></markdown>
+<button class="btn btn-primary" type="save" (click)="broadcastStanza()">Update Stanza</button>
